@@ -11,6 +11,9 @@ RUN mkdir /data &&\
 
 RUN tdnf install -y yum && tdnf install -y tar && tdnf install -y xz
 
+# Add TP2 pkg source to tdnf/yum
+COPY photon-tp2.repo /etc/yum.repos.d/photon.repo
+
 RUN yum --installroot=$TEMP_CHROOT install -y bash-4.3-4.ph1tp2 \
                                               coreutils-8.22-1.ph1tp2 \
                                               filesystem-7.5-8.ph1tp2 \

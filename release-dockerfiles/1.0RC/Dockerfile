@@ -11,15 +11,18 @@ RUN mkdir /data &&\
 
 RUN tdnf install -y yum && tdnf install -y tar && tdnf install -y xz
 
-RUN yum --installroot=$TEMP_CHROOT install -y bash \
-                                              coreutils \
-                                              filesystem \
-                                              findutils \
-                                              photon-release \
-                                              tdnf \
-                                              util-linux \
-                                              vim \
-                                              which
+# Add RC pkg source to tdnf/yum
+COPY photon-rc.repo /etc/yum.repos.d/photon.repo
+
+RUN yum --installroot=$TEMP_CHROOT install -y bash-4.3-4.ph1rc \
+                                              coreutils-8.22-1.ph1rc \
+                                              filesystem-7.5-11.ph1rc \
+                                              findutils-4.4.2-1.ph1rc \
+                                              photon-release-1.3-1.ph1rc \
+                                              tdnf-1.0.5-1.ph1rc \
+                                              util-linux-2.24.1-3.ph1rc \
+                                              vim-7.4-4.ph1rc \
+                                              which-2.20-1.ph1rc
 RUN yum --installroot=$TEMP_CHROOT clean all
 
 RUN cp /etc/resolv.conf $TEMP_CHROOT/etc/
