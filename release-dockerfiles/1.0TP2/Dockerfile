@@ -1,4 +1,4 @@
-FROM vmware/photon
+FROM photon:1.0TP2
 MAINTAINER Fabio Rapposelli <fabio@vmware.com>
 
 # Create temporary chroot environment

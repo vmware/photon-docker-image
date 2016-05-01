@@ -1,4 +1,4 @@
-FROM vmware/photon
+FROM photon:1.0TP2
 MAINTAINER Fabio Rapposelli <fabio@vmware.com>
 
 # Create temporary chroot environment
@@ -14,15 +14,15 @@ RUN tdnf install -y yum && tdnf install -y tar && tdnf install -y xz
 # Add RC pkg source to tdnf/yum
 COPY photon-rc.repo /etc/yum.repos.d/photon.repo
 
-RUN yum --installroot=$TEMP_CHROOT install -y bash-4.3-4.ph1rc \
-                                              coreutils-8.22-1.ph1rc \
-                                              filesystem-7.5-11.ph1rc \
-                                              findutils-4.4.2-1.ph1rc \
-                                              photon-release-1.3-1.ph1rc \
-                                              tdnf-1.0.5-1.ph1rc \
-                                              util-linux-2.24.1-3.ph1rc \
-                                              vim-7.4-4.ph1rc \
-                                              which-2.20-1.ph1rc
+RUN yum --installroot=$TEMP_CHROOT install -y bash-4.3.30-2.ph1 \
+                                              coreutils-8.24-1.ph1 \
+                                              filesystem-1.0-1.ph1 \
+                                              findutils-4.4.2-1.ph1 \
+                                              photon-release-1.0-4.ph1 \
+                                              tdnf-1.0.8-2.ph1 \
+                                              util-linux-2.27.1-1.ph1 \
+                                              vim-7.4-4.ph1 \
+                                              which-2.21-1.ph1
 RUN yum --installroot=$TEMP_CHROOT clean all
 
 RUN cp /etc/resolv.conf $TEMP_CHROOT/etc/
