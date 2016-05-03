@@ -27,7 +27,17 @@ RUN yum --installroot=$TEMP_CHROOT clean all
 
 RUN cp /etc/resolv.conf $TEMP_CHROOT/etc/
 
+# Add RC pkg sources to rootfs
+RUN mkdir -p $TEMP_CHROOT/etc/yum.repos.d &&\
+    cp /etc/yum.repos.d/photon.repo $TEMP_CHROOT/etc/yum.repos.d
+RUN mkdir -p $TEMP_CHROOT/etc/pki/rpm-gpg &&\
+    cp /etc/pki/rpm-gpg/VMWARE-RPM-GPG-KEY $TEMP_CHROOT/etc/pki/rpm-gpg/VMWARE-RPM-GPG-KEY
+COPY photon-rc-updates.repo $TEMP_CHROOT/etc/yum.repos.d/photon-updates.repo
+
+# Cleanup
 RUN cd $TEMP_CHROOT && rm -rf usr/src/ && rm -rf home/* && rm -rf var/log/*
+
+# Build rootfs
 RUN cd $TEMP_CHROOT && cp -pr etc/skel/. root/.
 RUN cd $TEMP_CHROOT && tar cpJf /data/rootfs.tar.xz .
 
