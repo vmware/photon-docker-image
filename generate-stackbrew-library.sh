@@ -9,7 +9,7 @@ if [ ${#versions[@]} -eq 0 ]; then
 	versions=( release-dockerfiles/* )
 fi
 versions=( "${versions[@]%/}" )
-url='git://github.com/frapposelli/photon-docker-image'
+url='git://github.com/vmware/photon-docker-image'
 
 cat <<-'EOH'
 # maintainer: Fabio Rapposelli <fabio@vmware.com> (@frapposelli)
