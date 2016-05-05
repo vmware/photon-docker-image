@@ -19,7 +19,7 @@ RUN tdnf upgrade -y tdnf &&\
 RUN tdnf --installroot $TEMP_CHROOT/ install -y \
                                           bash-4.3.30-2.ph1 \
                                           coreutils-8.24-1.ph1 \
-                                          filesystem-1.0-1.ph1 \
+                                          filesystem-1.0-2.ph1 \
                                           findutils-4.4.2-1.ph1 \
                                           photon-release-1.0-4.ph1 \
                                           photon-repos-1.0-2.ph1 \
