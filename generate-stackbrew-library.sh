@@ -1,35 +1,41 @@
 #!/bin/bash
 set -e
 
-cd "$(dirname "$(greadlink -f "$BASH_SOURCE")")"
+versions="2.0 1.0"
 
-latest=`cat latest`
-versions=( "$@" )
-if [ ${#versions[@]} -eq 0 ]; then
-	versions=( release-dockerfiles/* )
-fi
-versions=( "${versions[@]%/}" )
-url='git://github.com/vmware/photon-docker-image'
+self="$(basename "$BASH_SOURCE")"
 
-cat <<-'EOH'
-# maintainer: Fabio Rapposelli <fabio@vmware.com> (@frapposelli)
-EOH
+# get the most recent commit which modified any of "$@"
+fileCommit() {
+  git log -1 --format='format:%H' HEAD -- "$@"
+}
 
-commitRange='master..dist'
-commitCount="$(git rev-list "$commitRange" --count 2>/dev/null || true)"
-if [ "$commitCount" ] && [ "$commitCount" -gt 0 ]; then
-	echo
-	echo '# commits:' "($commitRange)"
-	git log --format=format:'- %h %s%n%w(0,2,2)%b' "$commitRange" | sed 's/^/#  /'
-fi
+cat > photon << EOF
+# this file is generated via https://github.com/vmware/photon-docker-image/blob/$(fileCommit "$self")/$self
 
-for version in "${versions[@]}"; do
-  tag=$(basename $version)
-	commit="$(git log -1 --format='format:%H' -- "$tag")"
-	echo
-	echo "# $version"
-	echo "$tag: ${url}@${commit} $tag"
-  if [ "$tag" == "$latest" ]; then
-    echo "latest: ${url}@${commit} $tag"
-  fi
+Maintainers: Fabio Rapposelli <fabio@vmware.com> (@frapposelli),
+             Alexey Makhalov <amakhalov@vmware.com> (@YustasSwamp)
+GitRepo: https://github.com/vmware/photon-docker-image.git
+Directory: docker
+
+EOF
+
+latestTag=", latest"
+
+for version in $versions ; do
+  extraTags=", $version$latestTag"
+  latestTag=""
+  for branch in $(git branch -r | grep -e "origin/$version-" | sort -r | sed 's#^  origin/##') ; do
+    echo "Tags: $branch$extraTags" >> photon
+    echo "GitFetch: refs/heads/$branch" >> photon
+    echo "GitCommit: $(git rev-parse $branch)" >> photon
+    echo >> photon
+    extraTags=""
+  done
 done
+
+cat >> photon << EOF
+Tags: 1.0GA
+GitFetch: refs/heads/dist
+GitCommit: 2043d10673cdb19ef656cbe0686e62345f4517b2
+EOF
