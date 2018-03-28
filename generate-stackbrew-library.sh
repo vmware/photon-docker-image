@@ -25,10 +25,12 @@ latestTag=", latest"
 for version in $versions ; do
   extraTags=", $version$latestTag"
   latestTag=""
-  for branch in $(git branch -r | grep -e "origin/$version-" | sort -r | sed 's#^  origin/##') ; do
+  git ls-remote --heads origin $version\* | sort -r -k2 | while read branchLine ; do
+    branch=${branchLine: -12}
+    commit=${branchLine:0:40}
     echo "Tags: $branch$extraTags" >> photon
     echo "GitFetch: refs/heads/$branch" >> photon
-    echo "GitCommit: $(git rev-parse $branch)" >> photon
+    echo "GitCommit: $commit" >> photon
     echo >> photon
     extraTags=""
   done
