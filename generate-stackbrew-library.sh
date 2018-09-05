@@ -30,3 +30,22 @@ for version in $versions ; do
   echo "GitCommit: $commit" >> photon
   latestTag=""
 done
+
+# dev branch handling
+version="dev"
+x86_64branchLine=$(git ls-remote --heads origin x86_64\/$version\* | sort -r -k2 | head -n1)
+x86_64branch=${x86_64branchLine: -12}
+x86_64commit=${x86_64branchLine:0:40}
+aarch64branchLine=$(git ls-remote --heads origin aarch64\/$version\* | sort -r -k2 | head -n1)
+aarch64branch=${aarch64branchLine: -12}
+aarch64commit=${aarch64branchLine:0:40}
+if [ -n "$x86_64branch" -a -n "$aarch64branch" ] ; then
+  test "$x86_64branch" \> "$aarch64branch" && tag=$x86_64branch || tag=$aarch64branch
+  echo >> photon
+  echo "Tags: $version, $tag" >> photon
+  echo "Architectures: amd64, arm64v8" >> photon
+  echo "GitFetch: refs/heads/x86_64/$x86_64branch" >> photon
+  echo "GitCommit: $x86_64commit" >> photon
+  echo "arm64v8-GitFetch: refs/heads/aarch64/$aarch64branch" >> photon
+  echo "arm64v8-GitCommit: $aarch64commit" >> photon
+fi
