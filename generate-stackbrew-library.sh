@@ -59,9 +59,6 @@ latestTag=", latest"
 # 3.0 branch
 aarch64_branch "3.0"
 
-# dev branch
-aarch64_branch "dev"
-
 # 1.0 branch
 only_x86_64_branch "1.0"
 
