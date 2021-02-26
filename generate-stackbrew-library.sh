@@ -56,6 +56,9 @@ latestTag=", latest"
 
 # Note: For new release branches, please put it in the first one.
 # Then latest tag will be snapp at the new release branch
+# 4.0 branch
+aarch64_branch "4.0"
+
 # 3.0 branch
 aarch64_branch "3.0"
 
