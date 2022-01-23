@@ -1,0 +1,8 @@
+FROM scratch
+ADD photon-rootfs-3.0-da1ba194e.tar.gz /
+
+LABEL name="Photon OS x86_64/3.0 Base Image" \
+    vendor="VMware" \
+    build-date="20220123"
+
+CMD ["/bin/bash"]
