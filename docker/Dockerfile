@@ -1,0 +1,8 @@
+FROM scratch
+ADD photon-rootfs-4.0-8499686c2.tar.gz /
+
+LABEL name="Photon OS aarch64/4.0 Base Image" \
+    vendor="VMware" \
+    build-date="20230109"
+
+CMD ["/bin/bash"]
