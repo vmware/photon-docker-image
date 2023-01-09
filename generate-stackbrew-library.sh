@@ -47,6 +47,7 @@ aarch64_branch() {
 cat > photon << EOF
 # this file is generated via https://github.com/vmware/photon-docker-image/blob/$(fileCommit "$self")/$self
 Maintainers: Fabio Rapposelli <fabio@vmware.com> (@frapposelli),
+             Michelle Wang <michellew@vmware.com> (@michellew),
              Alexey Makhalov <amakhalov@vmware.com> (@YustasSwamp)
 GitRepo: https://github.com/vmware/photon-docker-image.git
 Directory: docker
