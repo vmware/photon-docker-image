@@ -52,7 +52,7 @@ Maintainers: Fabio Rapposelli <fabio@vmware.com> (@frapposelli),
 GitRepo: https://github.com/vmware/photon-docker-image.git
 Directory: docker
 
-Tags: 5.0, 5.0-20230128, beta
+Tags: 5.0, 5.0-20230128, 5.0-beta
 Architectures: amd64, arm64v8
 GitFetch: refs/heads/x86_64/5.0-20230128
 GitCommit: 2e9a9ec4cc3a40565d67c2c3495e5ef3dd046770
