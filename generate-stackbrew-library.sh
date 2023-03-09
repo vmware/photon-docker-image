@@ -69,6 +69,3 @@ aarch64_branch "4.0"
 
 # 3.0 branch
 aarch64_branch "3.0"
-
-# 2.0 branch
-only_x86_64_branch "2.0"
