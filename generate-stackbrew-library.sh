@@ -52,18 +52,15 @@ Maintainers: Fabio Rapposelli <fabio@vmware.com> (@frapposelli),
 GitRepo: https://github.com/vmware/photon-docker-image.git
 Directory: docker
 
-Tags: 5.0, 5.0-20230501, 5.0-GA
-Architectures: amd64, arm64v8
-GitFetch: refs/heads/x86_64/5.0-20230501
-GitCommit: 78d4b9fda369eeef1aedf73e27f6f41c6ca49726
-arm64v8-GitFetch: refs/heads/aarch64/5.0-20230501
-arm64v8-GitCommit: 8bf28a0648e25a2fa572f0cef26058b4164180b3
 EOF
 
 latestTag=", latest"
 
 # Note: For new release branches, please put it in the first one.
 # Then latest tag will be snapp at the new release branch
+# 5.0 branch
+aarch64_branch "5.0"
+
 # 4.0 branch
 aarch64_branch "4.0"
 
