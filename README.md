@@ -26,4 +26,4 @@ For more general user questions, visit the Photon OS user forum in our [Photon O
 
 # License
 
-View [license information](https://github.com/vmware/photon/blob/master/LICENSE) for the software contained in this image.
+View [license information](https://github.com/vmware/photon/blob/master/LICENSE.md) for the software contained in this image.
