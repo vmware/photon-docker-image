@@ -1,10 +1,10 @@
 For more information about this image and its history, please see [the relevant manifest file (`library/photon`)](https://github.com/docker-library/official-images/blob/master/library/photon). This image is updated via [pull requests to the `docker-library/official-images` GitHub repo](https://github.com/docker-library/official-images/pulls?q=label%3Alibrary%2Fphoton).
 
-For detailed information about the virtual/transfer sizes and individual layers of each of the above supported tags, please see [the `photon/tag-details.md` file](https://github.com/docker-library/docs/blob/master/photon/tag-details.md) in [the `docker-library/docs` GitHub repo](https://github.com/docker-library/docs).
+For detailed information about the virtual/transfer sizes and individual layers of each of the above supported tags, please see [the `photon` docs](https://github.com/docker-library/docs/tree/master/photon) in [the `docker-library/docs` GitHub repo](https://github.com/docker-library/docs).
 
 # VMware Photon OS
 
-Photon OS is a technology preview of a minimal Linux container host. It is designed to have a small footprint and boot extremely quickly on VMware platforms. Photon OS is intended to invite collaboration around running containerized applications in a virtualized environment.
+Photon OS is a minimal Linux container host. It is designed to have a small footprint and boot extremely quickly on VMware platforms. Photon OS is intended to invite collaboration around running containerized applications in a virtualized environment.
 
 Photon contains `tdnf`, a new, open-source, yum-compatible package manager that will help make the system as small as possible, but preserve the robust yum package management capabilities.
 
@@ -12,7 +12,7 @@ See the [FAQ](http://vmware.github.io/photon/assets/files/photon_faqs.pdf) for m
 
 ## How to use these images
 
-Photon OS images are intended for use in the **FROM** field of an application's `Dockerfile`. For example, to use VMware Photon 1.0RC as the base of an image, specify `FROM photon:1.0RC`.
+Photon OS images are intended for use in the **FROM** field of an application's `Dockerfile`. For example, to use VMware Photon OS 5.0 as the base of an image, specify `FROM photon:5.0`.
 
 ## Support
 
@@ -26,4 +26,4 @@ For more general user questions, visit the Photon OS user forum in our [Photon O
 
 # License
 
-View [license information](https://github.com/vmware/photon/blob/master/LICENSE) for the software contained in this image.
+View [license information](https://github.com/vmware/photon/blob/5.0/LICENSE.md) for the software contained in this image.
